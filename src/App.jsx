@@ -6,8 +6,8 @@ import {
   Route,
 } from 'react-router-dom'
 
-import CreateEntity from './components/CreateEntity'
-import ListEntity from './components/ListEntity'
+import CreateEntity from './components/Entity/CreateEntity'
+import ListEntity from './components/Entity/ListEntity'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
 
@@ -18,7 +18,7 @@ function App() {
       <Navbar></Navbar>
       <Routes path='/' element={<App/>}>
        <Route path='createEntity' element={<CreateEntity/>}></Route>
-       <Route path='updateEntity' element={<CreateEntity/>}></Route>
+       <Route path='updateEntity/:id' element={<CreateEntity/>}></Route>
        <Route path='listEntity' element={<ListEntity/>}></Route>
        <Route path='/' element={<Home/>}></Route>
       </Routes>
