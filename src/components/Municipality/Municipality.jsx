@@ -2,20 +2,20 @@ import { Box, Button, Flex, Grid, GridItem, Heading } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Entity = (props) => {
-  const deleteEntity = async (entityId) => {
-    await fetch("http://localhost:8080/entity/delete/" + entityId, {
-      method: 'delete'
+const Municipality = (props) => {
+  const deleteEntity = async (municipalityId) => {
+    await fetch("http://localhost:8080/municipality/delete/" + municipalityId, {
+      method: "delete",
     });
-    
-    props.getEntities();
+
+    props.getMunicipalities();
   };
 
   return (
     <Grid
       templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(4, 1fr)"]}
     >
-      {props.entities.map((entity, index) => (
+      {props.municipalities.map((municipality, index) => (
         <GridItem
           key={index}
           p={5}
@@ -31,16 +31,28 @@ const Entity = (props) => {
             textAlign={"center"}
             color={"white"}
           >
-            {entity.nameEntity}
+            {municipality.municipalityName}
+          </Heading>
+          <Heading
+            fontSize={"small"}
+            textAlign={"center"}
+            color={"white"}
+          >
+            {municipality.entityName}
           </Heading>
           <Flex justifyContent={"center"}>
-            <Button m={"2"} colorScheme="yellow" as={Link} to={"/updateEntity/" + entity.id}>
+            <Button
+              m={"2"}
+              colorScheme="yellow"
+              as={Link}
+              to={"/updateMunicipality/" + municipality.id}
+            >
               Update
             </Button>
             <Button
               m={"2"}
               colorScheme="red"
-              onClick={() => deleteEntity(entity.id)}
+              onClick={() => deleteEntity(municipality.id)}
             >
               Delete
             </Button>
@@ -51,4 +63,4 @@ const Entity = (props) => {
   );
 };
 
-export default Entity;
+export default Municipality;

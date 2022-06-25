@@ -16,14 +16,19 @@ import {
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const CreateEntity = () => {
+const CreateMunicipality = () => {
+  const [nameMunicipality, setNameMunicipality] = useState("");
   const [nameEntity, setNameEntity] = useState("");
   const [display, setDisplay] = useState("none");
   const [status, setStatus] = useState("success");
   const [title, setTitle] = useState("exmple");
   const [description, setDescription] = useState("example");
 
-  const url = "http://localhost:8080/entity/add";
+  const url = "http://localhost:8080/municipality/add";
+
+  const onChangeNameMunicipality = (e) => {
+    setNameMunicipality(e.target.value);
+  };
 
   const onChangeNameEntity = (e) => {
     setNameEntity(e.target.value);
@@ -32,8 +37,9 @@ const CreateEntity = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const EntityDto = {
-      nameEntity: nameEntity,
+    const MunicipalityDto = {
+      entityName: nameEntity,
+      municipalityName: nameMunicipality
     };
 
     const res = await fetch(url, {
@@ -41,19 +47,19 @@ const CreateEntity = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(EntityDto),
+      body: JSON.stringify(MunicipalityDto),
     });
 
     if (res.status === 200) {
       setDisplay("");
       setStatus("success");
       setTitle("Success!");
-      setDescription("Entity was created successfully");
+      setDescription("Municipality was created successfully");
     } else {
       setDisplay("");
       setStatus("error");
       setTitle("Error!");
-      setDescription("Entity was not created");
+      setDescription("Municipality was not created");
     }
   };
 
@@ -78,7 +84,13 @@ const CreateEntity = () => {
           </Heading>
           <form onSubmit={onSubmit}>
             <FormControl mt={"4"} color={"white"}>
-              <FormLabel htmlFor="nameEntity">Name</FormLabel>
+              <FormLabel htmlFor="nameMunicipality">Municipality Name</FormLabel>
+              <Input
+                id="nameMunicipality"
+                name="nameMunicipality"
+                onChange={onChangeNameMunicipality}
+              ></Input>
+              <FormLabel htmlFor="nameEntity">Entity Name</FormLabel>
               <Input
                 id="nameEntity"
                 name="nameEntity"
@@ -121,4 +133,4 @@ const CreateEntity = () => {
   );
 };
 
-export default CreateEntity;
+export default CreateMunicipality;

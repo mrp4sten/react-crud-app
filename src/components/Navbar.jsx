@@ -39,6 +39,32 @@ const Navbar = () => {
             </MenuList>
           </Menu>
         </Box>
+        <Box p={"2"} marginRight={"7"}>
+        <Menu isLazy>
+            <MenuButton color="white">Municipality</MenuButton>
+            <MenuList>
+              <MenuItem as={Link} to="/listMunicipality">
+                List
+              </MenuItem>
+              <MenuItem as={Link} to="/createMunicipality">
+                Create
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        </Box>
+        <Box p={"2"} marginRight={"7"}>
+        <Menu isLazy>
+            <MenuButton color="white">Providers</MenuButton>
+            <MenuList>
+              <MenuItem as={Link} to="/listProviders">
+                List
+              </MenuItem>
+              <MenuItem as={Link} to="/createProvider">
+                Create
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        </Box>
       </Flex>
     </Box>
   );
